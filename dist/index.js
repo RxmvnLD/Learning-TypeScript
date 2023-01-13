@@ -36,4 +36,51 @@ function add(numA, numB, pow = 2) {
 }
 const sayHi = () => console.log("Hi there!");
 sayHi();
+function userError() {
+    throw new Error("User error");
+}
+function area(s) {
+    let area = 0;
+    if (s.kind === "square") {
+        area = s.size * s.size;
+        return area;
+    }
+    else if (s.kind === "rectangle") {
+        area = s.width * s.height;
+        return area;
+    }
+    console.log(s);
+    return area;
+}
+let myUnion = 0;
+myUnion = "0";
+const somethingAlive = {
+    id: 1,
+    weight: 100
+};
+const bee = {
+    id: 1,
+    weight: 0.01,
+    walk: false,
+    fly: true
+};
+const dog = {
+    id: 2,
+    weight: 5,
+    walk: true,
+    fly: false
+};
+const fibonacciNumber = 0;
+function toNum(s) {
+    if (!s) {
+        return 0;
+    }
+    return parseInt(s);
+}
+const n = toNum(undefined);
+const myName = "Román", myNameAsString = myName;
+let anyNum = 77;
+let num = anyNum;
+console.log(num);
+console.log(typeof num);
 //# sourceMappingURL=index.js.map
