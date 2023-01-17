@@ -214,3 +214,113 @@
 
 // let unknownVar: unknown = 10;
 // //unknownVar.foo(); this will show an error
+
+///////OOP WITH TYPESCRIPT
+
+//Classes
+
+class Character {
+    readonly id: number;
+    private _name: string;
+    job?: string;
+    private _level: number;
+    private _hp: number;
+    _isDead: boolean = false;
+    
+    constructor(id: number, name: string, level:number, hp:number){
+        this.id = id;
+        this._name = name;
+        this._level = level;
+        this._hp = hp;
+    }
+
+    set name(newName: string){
+        this._name = newName;
+        console.log(`Your new name is ${this._name}`);
+    }
+
+    getDamage(damage: number):number{
+        if(this._hp-damage<=0){
+            this._isDead = true;
+            console.log("Enemy is dead");
+        }
+        return this._hp-damage;
+    }
+
+    levelUp(lvlToUp: number): number {
+        this._level = this._level + lvlToUp;
+        console.log(`You are now level ${this._level}`);
+        return this._level;
+      }
+} 
+
+const knight = new Character(1, "Knight", 1, 100);
+
+
+
+//Parameter properties
+class Enemy {
+    actualWorld?: string;
+
+    constructor(
+        readonly id: number,
+        readonly name: string, 
+        readonly level:number, 
+        private _hp:number, 
+        public isDead?:boolean){}
+    
+    getDamage(damage: number):number{
+        if(this._hp-damage<=0){
+            this.isDead = true;
+            console.log("Enemy is dead");
+        }
+        return this._hp-damage;
+    }
+
+    //Getters and setters
+    get hp(): number{
+        return this._hp;
+    }
+}
+
+const skeleton = new Enemy(1, "Skeleton", 1, 150);
+// console.log("skeleton hp: ", skeleton.hp);
+
+class Soldier {
+    //Static property
+    private static _numberOfSoldiers: number = 0;
+    //
+    private _hp:number = 100;
+    public isDead: boolean = false
+    
+    constructor(readonly name:string){
+        Soldier.addSoldier();
+    }
+
+	//Static methods
+    private static addSoldier():void{
+        Soldier._numberOfSoldiers++
+        console.log("New number of soldiers: ", Soldier._numberOfSoldiers);
+    }
+    static get pelothonSize(): number{
+        return Soldier._numberOfSoldiers;
+    }
+
+    //Instance methods
+    getDamage(damage: number):number{
+        if(this._hp-damage<=0){
+            this.isDead = true;
+            console.log("Enemy is dead");
+        }
+        return this._hp-damage;
+    }
+}
+
+console.log("Pelothon size: ", Soldier.pelothonSize);
+const ryan = new Soldier("James Ryan");
+console.log("Pelothon size: ", Soldier.pelothonSize);
+
+
+
+
+

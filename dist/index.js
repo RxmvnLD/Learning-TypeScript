@@ -1,86 +1,74 @@
 "use strict";
-let message = "Hello world";
-message = "q royo";
-let exticiónDinosaurios = 76000000, dinosaurioFav = "T-Rex", extintos = true;
-let dondeVivianLosDinosaurios;
-dondeVivianLosDinosaurios = "earth";
-let animals = ["dog", "cat", "snake"], nums = [1, 2, 3, 4], checks = [true, false];
-let animals2 = ["dog", "cat", "snake"], nums2 = [1, 2, 3, 4], checks2 = [true, false];
-let myArray = [];
-animals.map(animal => animal.toLocaleLowerCase());
-nums.map(num => num.toString());
-let tupla = [1, "dog"];
-tupla = [1, "dog"];
-var Fruits;
-(function (Fruits) {
-    Fruits[Fruits["MangoPrice"] = 10] = "MangoPrice";
-    Fruits[Fruits["ApplePrice"] = 11] = "ApplePrice";
-    Fruits[Fruits["KiwiPrice"] = 12] = "KiwiPrice";
-})(Fruits || (Fruits = {}));
-;
-let myShirtSize = "Small";
-const roman = {
-    id: 0,
-    name: "Román",
-    size: "Small",
-    address: {
-        street: "72nd street",
-        number: 123,
-        city: "New York"
+class Character {
+    constructor(id, name, level, hp) {
+        this._isDead = false;
+        this.id = id;
+        this._name = name;
+        this._level = level;
+        this._hp = hp;
     }
-};
-const cusomers = [];
-const arrowAdd = (numA, numB) => numA + numB;
-function add(numA, numB, pow = 2) {
-    return Math.pow((numA + numB), pow);
-}
-const sayHi = () => console.log("Hi there!");
-sayHi();
-function userError() {
-    throw new Error("User error");
-}
-function area(s) {
-    let area = 0;
-    if (s.kind === "square") {
-        area = s.size * s.size;
-        return area;
+    set name(newName) {
+        this._name = newName;
+        console.log(`Your new name is ${this._name}`);
     }
-    else if (s.kind === "rectangle") {
-        area = s.width * s.height;
-        return area;
+    getDamage(damage) {
+        if (this._hp - damage <= 0) {
+            this._isDead = true;
+            console.log("Enemy is dead");
+        }
+        return this._hp - damage;
     }
-    console.log(s);
-    return area;
-}
-let myUnion = 0;
-myUnion = "0";
-const somethingAlive = {
-    id: 1,
-    weight: 100
-};
-const bee = {
-    id: 1,
-    weight: 0.01,
-    walk: false,
-    fly: true
-};
-const dog = {
-    id: 2,
-    weight: 5,
-    walk: true,
-    fly: false
-};
-const fibonacciNumber = 0;
-function toNum(s) {
-    if (!s) {
-        return 0;
+    levelUp(lvlToUp) {
+        this._level = this._level + lvlToUp;
+        console.log(`You are now level ${this._level}`);
+        return this._level;
     }
-    return parseInt(s);
 }
-const n = toNum(undefined);
-const myName = "Román", myNameAsString = myName;
-let anyNum = 77;
-let num = anyNum;
-console.log(num);
-console.log(typeof num);
+const knight = new Character(1, "Knight", 1, 100);
+class Enemy {
+    constructor(id, name, level, _hp, isDead) {
+        this.id = id;
+        this.name = name;
+        this.level = level;
+        this._hp = _hp;
+        this.isDead = isDead;
+    }
+    getDamage(damage) {
+        if (this._hp - damage <= 0) {
+            this.isDead = true;
+            console.log("Enemy is dead");
+        }
+        return this._hp - damage;
+    }
+    get hp() {
+        return this._hp;
+    }
+}
+const skeleton = new Enemy(1, "Skeleton", 1, 150);
+class Soldier {
+    constructor(name) {
+        this.name = name;
+        this._hp = 100;
+        this.isDead = false;
+        Soldier.addSoldier();
+    }
+    static addSoldier() {
+        Soldier._numberOfSoldiers++;
+        console.log("New number of soldiers: ", Soldier._numberOfSoldiers);
+    }
+    static get pelothonSize() {
+        return Soldier._numberOfSoldiers;
+    }
+    getDamage(damage) {
+        if (this._hp - damage <= 0) {
+            this.isDead = true;
+            console.log("Enemy is dead");
+        }
+        return this._hp - damage;
+    }
+}
+Soldier._numberOfSoldiers = 0;
+console.log("Pelothon size: ", Soldier.pelothonSize);
+const ryan = new Soldier("James Ryan");
+console.log("Pelothon size: ", Soldier.pelothonSize);
 //# sourceMappingURL=index.js.map
